@@ -1,0 +1,103 @@
+ Git配置：
+        //git config 对git进行配置
+        //--gloal 进行全局配置，使用了这个命令，执行一次永久生效
+
+        git config --gloal user.name "用户名"
+        git config --gloal user.email "邮箱"
+
+        //C:/User/用户名文件夹/.gitconfig文件中
+
+        #查看所有的全部配置项
+            git config --list --gloal
+
+        #查看指定的全局配置项
+            git config user.name
+            git config user.email
+
+        #查看git config 命令的帮助手册
+            git help config
+            git config -h
+
+        #获取Git仓库的两种方式
+            1.将尚未进行版本控制的本地目录转换为Git仓库:
+                    1.1在项目目录，右键"Git Bash"
+                    1.2执行Git init命令将当前的目录转换为git仓库，
+                        会创建一个.git的隐藏目录，里面包含初始必要文件，
+                        这些文件是Git仓库的必要组成部分     
+
+            
+            2.从其他服务器克隆一个已存在的Git仓库
+        
+    检查文件的状态：
+        可以使用"git status"命令查看文件处于什么状态
+    
+    以精简的方式显示文件状态：
+        可以使用等价的命令 -s 是--short的简写形式
+        git status -s == git status -short
+        显示红色 ?? 为未跟踪的状态
+        显示绿色的 A 就是新添加到暂存区
+        显示红色的 M 是已修改，但未放入暂存区
+        显示绿色的 M 是已修改，已放入暂存区
+
+    跟踪新文件：
+        使用命令"git add"开始跟踪一个新文件。
+        git add index.html
+        
+        使用git status -s查看
+        
+
+    提交更新：
+        可以执行"git commit"命令进行提交，加上"-m"可以对本次的提交信息进行描述
+        git commit -m '最新的更新'
+    
+
+    撤销对文件的修改：
+        所有的修改都会丢失，且无法恢复
+        "git checkout -- index.html" 文件名
+
+    向暂存区添加多个文件:
+        "git add ." 将会保存所有的文件到暂存区
+
+    向暂存区移除对应的文件:
+        "git reset HEAD 要移除的文件名"
+        移除所有的文件:
+            "git rest HEAD ."
+        
+    跳过暂存区，直接工作区提交到Git仓库：
+        将所有跟踪的文件提交到Git仓库，加上-a，自动吧跟踪过的文件暂存起来一起提交
+            git commit -a -m "描述" 
+
+    从Git仓库移除文件:
+        #从git仓库和工作区中同时移除文件
+        git rm -f 文件名
+
+        #只从git仓库移除文件，但保留工作区的文件
+        git rm --cached 文件名
+
+    查看提交历史：
+            git log
+    
+        #暂时最新的两条历史：
+            git log -2
+        
+        #展示最近两条提交历史的信息
+            git log -2 --pretty=online
+
+        #查看提交人的信息
+            git log --pretty=oneline:"%h |%an |%ar |%s"
+
+    回退到指定的版本：
+            git log --pretty=oneline
+            黄色字体的项目代码《CommitID》
+
+            #使用git reset --hard 《CommitID》会回退到指定版本
+
+            #在旧版本中使用
+            git reflog --pretty=oneline
+
+            #再次根据最新的提交ID，跳转到最新的版本
+            git reset --hard 《CommitID》
+
+            
+
+
